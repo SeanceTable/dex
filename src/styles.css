@@ -1,0 +1,112 @@
+:root {
+  --primary-color: #ADFF2F;
+  --background-color: #000000;
+  --surface-color: #111111;
+  --text-color: #FFFFFF;
+  --error-color: #FF4500;
+  --disabled-color: #4D7F00;
+  --hover-color: #8BFF00;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding-top: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+button {
+  background: linear-gradient(45deg, var(--primary-color), var(--hover-color));
+  color: var(--background-color);
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 30px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(173, 255, 47, 0.1);
+}
+
+button:hover {
+  background: linear-gradient(45deg, var(--hover-color), var(--primary-color));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(173, 255, 47, 0.2);
+}
+
+button:disabled {
+  background: var(--disabled-color);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.cool-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin: 0 20px;
+}
+
+.nav-list a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.landing-page,
+.widget-page {
+  text-align: center;
+}
+
+.widget-page > div {
+  display: inline-block;
+  margin-top: 30px;
+}
+
+.widget-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height */
+  text-align: center; /* Center text for h2 */
+  margin: 0;
+}
+
