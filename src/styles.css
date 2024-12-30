@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #ADFF2F;
+  --primary-color: #b65fdf;
   --background-color: #000000;
   --surface-color: #111111;
   --text-color: #FFFFFF;
   --error-color: #FF4500;
-  --disabled-color: #4D7F00;
-  --hover-color: #8BFF00;
+  --disabled-color: #7a2373;
+  --hover-color: #b65fdf;
 }
 
 body {
@@ -14,13 +14,19 @@ body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.6;
   margin: 0;
-  padding-top: 80px;
+  padding: 0;
+  height: 100%; /* Ensure the body spans the entire height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  width: 100%;
 }
 
 h2 {
@@ -90,6 +96,64 @@ button:disabled {
   font-weight: bold;
 }
 
+/* Black outline for text */
+.outlined-text {
+  color: white;
+  text-shadow: 
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;
+}
+
+/* Black outline for boxes or UI elements */
+.outlined-box {
+  outline: 2px solid black;
+  outline-offset: 4px;
+}
+
+/* Black border for UI elements */
+.bordered-box {
+  border: 2px solid black;
+}
+
+/* Combined text and element outline */
+.combined {
+  color: white;
+  text-shadow: 
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* BridgePage Styles */
+.widget-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px); /* Full viewport height minus nav height */
+  text-align: center;
+  margin: 0 auto;
+}
+
+.widget-container {
+  width: 100%;
+  max-width: 400px; /* Match the widget width */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin: auto; /* Center within its parent */
+  background-color: var(--surface-color); /* Optional background for widget container */
+  padding: 20px; /* Add some padding for better visual appearance */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
+}
+
 .landing-page,
 .widget-page {
   text-align: center;
@@ -100,13 +164,38 @@ button:disabled {
   margin-top: 30px;
 }
 
-.widget-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* Full viewport height */
-  text-align: center; /* Center text for h2 */
-  margin: 0;
+.widget-page h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
 }
 
+/* Fullscreen Video Background */
+.video-background {
+  position: fixed; /* Ensures the video fills the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden;
+  z-index: -1; /* Push the video behind all content */
+}
+
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensures the video spans the full width */
+  height: 100%; /* Ensures the video spans the full height */
+  object-fit: cover; /* Ensures the video covers the area without distortion */
+  z-index: -1; /* Keeps video behind content */
+  opacity: 1; /* Ensures visibility */
+}
+
+
+
+.content {
+  position: relative; /* Ensure content sits above the video */
+  z-index: 1; /* Ensure higher stacking order than the video */
+  text-align: center;
+  color: var(--text-color); /* Matches the text color defined in your root variables */
+}

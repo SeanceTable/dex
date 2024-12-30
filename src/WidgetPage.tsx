@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import {
     createOkxSwapWidget,
-    IWidgetConfig,
     ProviderType,
+    OkxSwapWidgetProps,
+    IWidgetConfig,
     TradeType,
+    THEME,
 } from "@okxweb3/dex-widget";
-import { THEME } from '@okxweb3/dex-widget';
+
 declare global {
     interface Window {
         ethereum?: any;
@@ -14,80 +16,133 @@ declare global {
 
 const WidgetPage: React.FC = () => {
     const widgetRef = useRef<HTMLDivElement>(null);
-    const widgetHandler = useRef<any>(null);
-    const [currentPairIndex, setCurrentPairIndex] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0); // Track current page
+    const widgetInstanceRef = useRef<any>(null); // Keep track of the widget instance
 
-    const tokenPairs = [
+    // Define token pairs and custom page names
+    const pages = [
         {
-            fromChain: 42161,
-            toChain: 42161,
-            fromToken: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831", // USDC
-            toToken: "0x529E43f03C426ba50dEc652496a9C84e617507Ca", // Target token
+            name: "Arbitrum",
+            tokenPair: {
+                fromChain: 42161, // Arbitrum
+                toChain: 42161, // Arbitrum
+                fromToken: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831", // USDC
+                toToken: "0x529E43f03C426ba50dEc652496a9C84e617507Ca", // qBit
+            },
         },
         {
-            fromChain: 42161,
-            toChain: 42161,
-            fromToken: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", // ETH
-            toToken: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", // USDC
+            name: "Polygon",
+            tokenPair: {
+                fromChain: 137, // Polygon
+                toChain: 137, // Polygon
+                fromToken: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359", // USDC
+                toToken: "0x8bF087Be99983A4FF928A94Ac302fD5f139e4D7d", // qBit
+            },
         },
         {
-            fromChain: 1,
-            toChain: 1,
-            fromToken: "0xdAC17F958D2ee523a2206206994597C13D831ec7", // USDT
-            toToken: "0xA0b86991c6218b36c1d19d4a2e9Eb0cE3606eB48", // USDC
+            name: "Base Network",
+            tokenPair: {
+                fromChain: 8453, // Base Network
+                toChain: 8453, // Base Network
+                fromToken: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", // USDC
+                toToken: "0xF25893D5B7a99F087dD55fFb65Ca29133486090e", // qBit
+            },
+        },
+        {
+            name: "Avalanche",
+            tokenPair: {
+                fromChain: 43114, // Avalanche
+                toChain: 43114, // Avalanche
+                fromToken: "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e", // USDC
+                toToken: "0x74A96f3113A0046Df3956f77d7A753025331f9Bd", // qBit
+            },
+        },
+        {
+            name: "Optimism",
+            tokenPair: {
+                fromChain: 10, // Optimism
+                toChain: 10, // Optimism
+                fromToken: "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85", // USDC
+                toToken: "0x529E43f03C426ba50dEc652496a9C84e617507Ca", // qBit
+            },
         },
     ];
 
     useEffect(() => {
         if (!widgetRef.current) return;
 
-        const params: IWidgetConfig["params"] = {
-            chainIds: ["42161", "1"],
-            theme: THEME.DARK, // Use THEME.DARK instead of "dark"
-            tradeType: TradeType.SWAP,
-            providerType: ProviderType.EVM,
-            lang: "en_us",
-            width: 400,
-            tokenPair: tokenPairs[currentPairIndex],
+        const currentPair = pages[currentPage].tokenPair; // Get token pair for current page
+
+        const params: OkxSwapWidgetProps["params"] = {
+            chainIds: pages.map((page) => String(page.tokenPair.fromChain)), // Add all chains
+            theme: THEME.DARK, // Dark theme
+            tradeType: TradeType.SWAP, // Swap type
+            providerType: ProviderType.EVM, // EVM compatibility
+            lang: "en_us", // Language
+            baseUrl: "https://www.okx.com", // Base URL
+            width: 400, // Widget width
+            tokenPair: currentPair, // Use token pair for current page
+            feeConfig: {
+                [currentPair.fromChain]: {
+                    feePercent: 1, // 1% fee
+                    referrerAddress: {
+                        [currentPair.toToken]: {
+                            account: "0xE30258e8e1c377dBAF9385Fd33A26528019cF833", // Replace with your referrer account
+                            feePercent: 1, // 1% fee
+                        },
+                    },
+                },
+            },
         };
 
-        const provider: IWidgetConfig["provider"] = {
-            ...window.ethereum,
-            accounts: window.ethereum?.selectedAddress ? [window.ethereum.selectedAddress] : [],
-        };
+        const provider = window.ethereum;
 
-        widgetHandler.current = createOkxSwapWidget(widgetRef.current, {
+        const widgetProps: IWidgetConfig = {
             params,
             provider,
-        });
-
-        return () => {
-            widgetHandler.current?.destroy();
         };
-    }, []);
 
-    useEffect(() => {
-        if (widgetHandler.current) {
-            widgetHandler.current.updateParams({
-                tokenPair: tokenPairs[currentPairIndex],
-            });
+        // Destroy the previous widget instance
+        if (widgetInstanceRef.current) {
+            widgetInstanceRef.current.destroy();
         }
-    }, [currentPairIndex]);
+
+        // Create a new widget instance
+        widgetInstanceRef.current = createOkxSwapWidget(widgetRef.current, widgetProps);
+    }, [currentPage]); // Re-run effect when currentPage changes
 
     return (
         <div className="widget-page">
-            <h2>OKX DEX Widget</h2>
-            <select
-                onChange={(e) => setCurrentPairIndex(Number(e.target.value))}
-                value={currentPairIndex}
-            >
-                {tokenPairs.map((pair, index) => (
-                    <option key={index} value={index}>
-                        From {pair.fromToken} to {pair.toToken}
-                    </option>
+                        <div className="video-background">
+                <video autoPlay muted loop playsInline className="video-bg">
+                    <source src="3.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <h2>qSwap</h2>
+            <p>Trade USDC for qBit</p>
+            {/* Navigation Buttons */}
+            <div className="button-group" style={{ marginBottom: "20px" }}>
+                {pages.map((page, index) => (
+                    <button
+                        key={index}
+                        onClick={() => setCurrentPage(index)}
+                        style={{
+                            margin: "5px",
+                            padding: "10px",
+                            backgroundColor: currentPage === index ? "green" : "gray",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "5px",
+                            cursor: "pointer",
+                        }}
+                    >
+                        {page.name}
+                    </button>
                 ))}
-            </select>
-            <div ref={widgetRef} />
+            </div>
+            {/* Widget Container */}
+            <div ref={widgetRef} style={{ width: "100%", maxWidth: "400px", minHeight: "500px" }} />
         </div>
     );
 };
