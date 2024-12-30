@@ -11,19 +11,19 @@ const LandingPage: React.FC = () => {
             Your browser does not support the video tag.
         </video>
     </div>
-      <h2>qPortal</h2>
+      <h2>🔮qPortal</h2>
       <p>qBit's Decentralized dApps</p>
       <Link to="/widget">
-        <button>qSwap</button>
+        <button>🎟️qSwap</button>
         </Link>
       <Link to="/swappy">
-        <button>Swappy</button>
+        <button>🏛️Swappy</button>
         </Link>
       <Link to="/bridge">
-        <button>Bridge</button>
+        <button>🌉Bridge</button>
       </Link>
       <a href="https://cultist.in/qBit/" target="_blank" rel="noopener noreferrer">
-    <button>Back Home</button>
+    <button>🔙Back Home</button>
 </a>
 
     </div>
