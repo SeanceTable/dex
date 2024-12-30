@@ -84,12 +84,6 @@ const SwappyPage: React.FC = () => {
 
     return (
         <div className="widget-page">
-                        <div className="video-background">
-                <video autoPlay muted loop playsInline className="video-bg">
-                    <source src="2.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
             <h2>Swappy</h2>
             <p>Decentralized Swap (1% Fee)</p>
             <div

@@ -112,39 +112,46 @@ const WidgetPage: React.FC = () => {
     }, [currentPage]); // Re-run effect when currentPage changes
 
     return (
-        <div className="widget-page">
-                        <div className="video-background">
-                <video autoPlay muted loop playsInline className="video-bg">
-                    <source src="3.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <h2>qSwap</h2>
-            <p>Trade USDC for qBit</p>
-            {/* Navigation Buttons */}
-            <div className="button-group" style={{ marginBottom: "20px" }}>
-                {pages.map((page, index) => (
-                    <button
-                        key={index}
-                        onClick={() => setCurrentPage(index)}
-                        style={{
-                            margin: "5px",
-                            padding: "10px",
-                            backgroundColor: currentPage === index ? "green" : "gray",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "5px",
-                            cursor: "pointer",
-                        }}
-                    >
-                        {page.name}
-                    </button>
-                ))}
-            </div>
-            {/* Widget Container */}
-            <div ref={widgetRef} style={{ width: "100%", maxWidth: "400px", minHeight: "500px" }} />
-        </div>
+<div className="widget-page">
+
+
+    {/* Page Content */}
+    <h2>qSwap</h2>
+    <p>Trade USDC for qBit</p>
+    {/* Navigation Buttons */}
+    <div className="button-group" style={{ marginBottom: "20px" }}>
+        {pages.map((page, index) => (
+            <button
+                key={index}
+                onClick={() => setCurrentPage(index)}
+                style={{
+                    margin: "5px",
+                    padding: "10px",
+                    backgroundColor: currentPage === index ? "green" : "gray",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                }}
+            >
+                {page.name}
+            </button>
+        ))}
+    </div>
+
+    {/* Widget Container */}
+    <div
+        ref={widgetRef}
+        style={{
+            width: "100%",
+            maxWidth: "400px",
+            minHeight: "500px",
+        }}
+    />
+</div>
+
     );
+    
 };
 
 export default WidgetPage;

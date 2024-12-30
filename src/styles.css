@@ -169,33 +169,3 @@ button:disabled {
   margin-bottom: 20px;
 }
 
-/* Fullscreen Video Background */
-.video-background {
-  position: fixed; /* Ensures the video fills the entire viewport */
-  top: 0;
-  left: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: hidden;
-  z-index: -1; /* Push the video behind all content */
-}
-
-.video-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; /* Ensures the video spans the full width */
-  height: 100%; /* Ensures the video spans the full height */
-  object-fit: cover; /* Ensures the video covers the area without distortion */
-  z-index: -1; /* Keeps video behind content */
-  opacity: 1; /* Ensures visibility */
-}
-
-
-
-.content {
-  position: relative; /* Ensure content sits above the video */
-  z-index: 1; /* Ensure higher stacking order than the video */
-  text-align: center;
-  color: var(--text-color); /* Matches the text color defined in your root variables */
-}

@@ -92,12 +92,6 @@ const BridgePage: React.FC = () => {
 
     return (
         <div className="widget-page">
-                        <div className="video-background">
-                <video autoPlay muted loop playsInline className="video-bg">
-                    <source src="1.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
             <h2>Bridge</h2>
             <p>Cross-Chain Bridge (1% Fee)</p>
             {/* Widget Container */}
