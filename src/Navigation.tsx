@@ -6,10 +6,10 @@ const Navigation: React.FC = () => {
     const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
     const navItems = [
-        { path: "/", label: "🔮qPortal" },
-        { path: "/widget", label: "🏧qSwap" },
-        { path: "/bridge", label: "💱Bridge" }, // New item
-        { path: "/swappy", label: "🕳️Swappy" }, // New item
+        { path: "/", label: "qPortal" },
+        { path: "/widget", label: "qSwap" },
+        { path: "/bridge", label: "Bridge" }, // New item
+        { path: "/swappy", label: "Swappy" }, // New item
     ];
 
     return (
