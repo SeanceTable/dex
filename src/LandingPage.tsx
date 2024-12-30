@@ -7,7 +7,7 @@ const LandingPage: React.FC = () => {
           {/* Video Background */}
     <div className="video-background">
         <video autoPlay muted loop playsInline className="video-bg">
-            <source src="1.mp4" type="video/mp4" />
+            <source src="https://cultist.in/qBit/1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
     </div>
@@ -22,7 +22,7 @@ const LandingPage: React.FC = () => {
       <Link to="/bridge">
         <button>Bridge</button>
       </Link>
-      <a href="https://www.example.com" target="_blank" rel="noopener noreferrer">
+      <a href="https://cultist.in/qBit/" target="_blank" rel="noopener noreferrer">
     <button>Back Home</button>
 </a>
 
