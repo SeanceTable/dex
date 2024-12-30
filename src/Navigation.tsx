@@ -8,8 +8,8 @@ const Navigation: React.FC = () => {
     const navItems = [
         { path: "/", label: "qPortal" },
         { path: "/widget", label: "qSwap" },
-        { path: "/bridge", label: "Bridge" }, // New item
-        { path: "/swappy", label: "Swappy" }, // New item
+        { path: "/bridge", label: "Bridge" },
+        { path: "/swappy", label: "Swappy" },
     ];
 
     return (
