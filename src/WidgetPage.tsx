@@ -27,7 +27,7 @@ const WidgetPage: React.FC = () => {
                 fromChain: 42161, // Arbitrum
                 toChain: 42161, // Arbitrum
                 fromToken: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831", // USDC
-                toToken: "0x529E43f03C426ba50dEc652496a9C84e617507Ca", // qBit
+                toToken: "0x089764Af15D27d8Fd7bdb598DeB095b70daDB403", // qBit
             },
         },
         {
@@ -36,7 +36,7 @@ const WidgetPage: React.FC = () => {
                 fromChain: 137, // Polygon
                 toChain: 137, // Polygon
                 fromToken: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359", // USDC
-                toToken: "0x8bF087Be99983A4FF928A94Ac302fD5f139e4D7d", // qBit
+                toToken: "0x5EDBEd44e3A4a407C7A93fD1bC54E938cf1Ca50A", // qBit
             },
         },
         {
@@ -45,7 +45,7 @@ const WidgetPage: React.FC = () => {
                 fromChain: 8453, // Base Network
                 toChain: 8453, // Base Network
                 fromToken: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", // USDC
-                toToken: "0xF25893D5B7a99F087dD55fFb65Ca29133486090e", // qBit
+                toToken: "0xf4B83B97A19712ae146f30177D48b21fB3c0AA31", // qBit
             },
         },
         {
@@ -54,7 +54,7 @@ const WidgetPage: React.FC = () => {
                 fromChain: 43114, // Avalanche
                 toChain: 43114, // Avalanche
                 fromToken: "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e", // USDC
-                toToken: "0x74A96f3113A0046Df3956f77d7A753025331f9Bd", // qBit
+                toToken: "0x734337694AD639840155B91B30a0adaCFDe775eC", // qBit
             },
         },
         {
@@ -63,7 +63,7 @@ const WidgetPage: React.FC = () => {
                 fromChain: 10, // Optimism
                 toChain: 10, // Optimism
                 fromToken: "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85", // USDC
-                toToken: "0x529E43f03C426ba50dEc652496a9C84e617507Ca", // qBit
+                toToken: "0xE967821f76D96d4d29f2c8e86E423C9D56B995f8", // qBit
             },
         },
     ];
