@@ -58,15 +58,6 @@ const WidgetPage: React.FC = () => {
             },
         },
         {
-            name: "opBNB",
-            tokenPair: {
-                fromChain: 204, // opBNB
-                toChain: 204, // opBNB
-                fromToken: "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e", // USDC
-                toToken: "0x97daC874195b627ba83310FD85F02ff8a47481c9", // qBit
-            },
-        },
-        {
             name: "Optimism",
             tokenPair: {
                 fromChain: 10, // Optimism

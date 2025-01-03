@@ -10,7 +10,6 @@ const Navigation: React.FC = () => {
         { path: "/widget", label: "qSwap" },
         { path: "/bridge", label: "Bridge" },
         { path: "/swappy", label: "Swappy" },
-        { path: "/qmint", label: "qMint" },
     ];
 
     return (
